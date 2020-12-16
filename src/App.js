@@ -10,11 +10,11 @@ import About from "./components/About.js";
 
 //firebase
 import firebase from "./firebase";
-import 'firebase/functions';
+import "firebase/functions";
 
 function App() {
   function testCF() {
-    const testFunc = firebase.functions().httpsCallable('test');
+    const testFunc = firebase.functions().httpsCallable("test");
     const messageText = "cc16";
     testFunc({ text: messageText }).then(function (result) {
       // Read result of the Cloud Function.
@@ -26,10 +26,9 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
       </header>
-      <button onClick={testCF}>
-        Test cloud functions
-    </button>
-      <Router>
+      <button onClick={testCF}>Test cloud functions</button>
+
+      <Router className="Router">
         <Switch>
           <Route exact path="/" component={Main} />
           <Route exact path="/Canceled" component={Canceled} />
