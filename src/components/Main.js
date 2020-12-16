@@ -1,10 +1,9 @@
 import React from "react";
 import { Route } from "react-router-dom";
-
 export default function Main() {
   return (
-    <div>
-      <div>
+    <div className="SpaceMain">
+      <div className="SpaceMain">
         <Route
           render={({ history }) => (
             <button
