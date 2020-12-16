@@ -1,7 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
+import firebase from "./firebase";
+import 'firebase/functions';
 
 function App() {
+  function testCF() {
+    const testFunc = firebase.functions().httpsCallable('test');
+    const messageText = "cc16";
+    testFunc({ text: messageText }).then(function (result) {
+      // Read result of the Cloud Function.
+      console.log(result.data);
+    });
+  }
   return (
     <div className="App">
       <header className="App-header">
@@ -18,6 +28,9 @@ function App() {
           Learn React
         </a>
       </header>
+      <button onClick={testCF}>
+        Test cloud functions
+    </button>
     </div>
   );
 }
