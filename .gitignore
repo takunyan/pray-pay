@@ -22,12 +22,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-<<<<<<< HEAD
-.eslintcache
-=======
 .firebaserc
 .firebase/
 **/firebase-debug.log
 
 .env
->>>>>>> 7f9f0e17710ba0bd8fa0b8cb9e0160ed639c38d3
+.eslintcache
