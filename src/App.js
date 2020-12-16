@@ -14,7 +14,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
       </header>
-      <Router>
+      <Router className="Router">
         <Switch>
           <Route exact path="/" component={Main} />
           <Route exact path="/Canceled" component={Canceled} />

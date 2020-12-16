@@ -7,6 +7,16 @@
   pointer-events: none;
 }
 
+.CheckoutImage {
+  height: 60vmin;
+  pointer-events: none;
+}
+.yen {
+  height: 5px;
+  height: 10vmin;
+  pointer-events: none;
+}
+
 .App-header {
   background-color: whitesmoke;
   /* min-height: 100vh; */
@@ -20,4 +30,14 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.SpaceMain {
+  margin-top: 100px;
+  margin-bottom: 40px;
+}
+
+.Space {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
