@@ -8,7 +8,7 @@ export default function Checkout() {
   const quantityArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 100, 200, 1000];
 
   function ourText() {
-    let output = selectedQuantity
+    let output = !isNaN(selectedQuantity)
       ? `${selectedQuantity * 5}円 お賽銭を投げる`
       : "枚数を選んで下さい";
     return output;
