@@ -7,6 +7,11 @@
   pointer-events: none;
 }
 
+.OutcomeImage {
+  height: 40vmin;
+  pointer-events: none;
+}
+
 .CheckoutImage {
   height: 60vmin;
   pointer-events: none;
@@ -33,10 +38,10 @@
 
 .SpaceMain {
   margin-top: 100px;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
 }
 
 .Space {
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
