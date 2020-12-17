@@ -3,7 +3,7 @@ import { Route } from "react-router-dom";
 import logo1 from "../image/worship.png";
 import logo2 from "../image/5yencoin.png";
 import Button from "@material-ui/core/Button";
-import Select from "@material-ui/core/Select";
+import NativeSelect from "@material-ui/core/NativeSelect";
 import { makeStyles } from "@material-ui/core/styles";
 //firebase
 import firebase from "../firebase";
@@ -43,7 +43,8 @@ export default function Checkout() {
 
       <div className="Space">
         <img src={logo2} className="yen" alt="logo" />
-        <select
+        <NativeSelect
+          id="select"
           className="select"
           onChange={(e) => updateSelectedQuantity(e.target.value)}
           onBlur={(e) => updateSelectedQuantity(e.target.value)}
@@ -52,7 +53,7 @@ export default function Checkout() {
           {quantityArray.map((element, index) => (
             <option key={index}>{element}</option>
           ))}
-        </select>
+        </NativeSelect>
       </div>
       <div className="select-wrapper">
         <Button
