@@ -5,13 +5,22 @@ import logo2 from "../image/5yencoin.png";
 import Button from "@material-ui/core/Button";
 import Select from "@material-ui/core/Select";
 import { makeStyles } from "@material-ui/core/styles";
+import Grid from '@material-ui/core/Grid';
 //firebase
 import firebase from "../firebase";
 import "firebase/functions";
 //stripe
 import { loadStripe } from "@stripe/stripe-js";
 
+const useStyles = makeStyles((theme) => ({
+  margin: {
+    margin: theme.spacing(1),
+  }
+}));
+
 export default function Checkout() {
+  const classes = useStyles();
+
   const handleClick = async () => {
     // Get Stripe.js instance
     const stripePromise = loadStripe(
@@ -22,6 +31,22 @@ export default function Checkout() {
       .functions()
       .httpsCallable("getCheckoutSession");
     const result = await getCheckoutSessionFunc({ quantity: selectedQuantity });
+    // When the customer clicks on the button, redirect them to Checkout.
+    await stripe.redirectToCheckout({
+      sessionId: result.data.id,
+    });
+  };
+
+  const handleClickOmikuji = async () => {
+    // Get Stripe.js instance
+    const stripePromise = loadStripe(
+      "pk_test_51HyW53Hh1P19FUEP8rVhQxrtrr7hJ7qmkhdJTXfO1oC6sMRRlPK0HuvIV2RIxGZTGEGmKOeFgpQXSHnMTkKX0zT900rRAlWaTb"
+    );
+    const stripe = await stripePromise;
+    const getCheckoutSessionFunc = firebase
+      .functions()
+      .httpsCallable("getCheckoutOmikuji");
+    const result = await getCheckoutSessionFunc();
     // When the customer clicks on the button, redirect them to Checkout.
     await stripe.redirectToCheckout({
       sessionId: result.data.id,
@@ -39,11 +64,24 @@ export default function Checkout() {
   }
   return (
     <div className="SpaceMain">
+
+      <div>
+        <button 
+          className="omikuji"
+          onClick = {() => {
+            handleClickOmikuji();
+            console.log("Buying Omikuji");
+          }}>Buy a Omikuji</button>
+      </div>
+
       <img src={logo1} className="CheckoutImage" alt="logo" />
 
       <div className="Space">
-        <img src={logo2} className="yen" alt="logo" />
-        <select
+      
+      <img src={logo2} className="yen" alt="logo" />
+      
+     
+      <select
           className="select"
           onChange={(e) => updateSelectedQuantity(e.target.value)}
           onBlur={(e) => updateSelectedQuantity(e.target.value)}
@@ -53,9 +91,11 @@ export default function Checkout() {
             <option key={index}>{element}</option>
           ))}
         </select>
+
       </div>
       <div className="select-wrapper">
         <Button
+          disabled={selectedQuantity=="枚数"||!selectedQuantity}
           className="button"
           type="button"
           onClick={() => {
@@ -70,8 +110,9 @@ export default function Checkout() {
         <Route
           render={({ history }) => (
             <Button
-              className="aboutbutton"
-              type="button"
+              variant="outlined"
+              size="large"
+              className={classes.margin}
               onClick={() => {
                 history.push("/");
               }}
