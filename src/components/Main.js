@@ -39,6 +39,24 @@ export default function Main() {
           render={({ history }) => (
             <Button
               variant="outlined"
+              color="secondary"
+              size="large"
+              className={classes.margin}
+              onClick={() => {
+                history.push("/OmikujiCheckout");
+              }}
+            >
+              おみくじ
+            </Button>
+          )}
+        />
+      </div>
+
+      <div>
+        <Route
+          render={({ history }) => (
+            <Button
+              variant="outlined"
               size="large"
               className={classes.margin}
               onClick={() => {
