@@ -2,8 +2,32 @@ import React, { useEffect, useState } from "react";
 import { Route } from "react-router-dom";
 import logo1 from "../image/worship.png";
 import logo2 from "../image/5yencoin.png";
+import Button from "@material-ui/core/Button";
+import Select from "@material-ui/core/Select";
+import { makeStyles } from "@material-ui/core/styles";
+//firebase
+import firebase from "../firebase";
+import "firebase/functions";
+//stripe
+import { loadStripe } from "@stripe/stripe-js";
 
 export default function Checkout() {
+  const handleClick = async () => {
+    // Get Stripe.js instance
+    const stripePromise = loadStripe(
+      "pk_test_51HyW53Hh1P19FUEP8rVhQxrtrr7hJ7qmkhdJTXfO1oC6sMRRlPK0HuvIV2RIxGZTGEGmKOeFgpQXSHnMTkKX0zT900rRAlWaTb"
+    );
+    const stripe = await stripePromise;
+    const getCheckoutSessionFunc = firebase
+      .functions()
+      .httpsCallable("getCheckoutSession");
+    const result = await getCheckoutSessionFunc({ quantity: selectedQuantity });
+    // When the customer clicks on the button, redirect them to Checkout.
+    await stripe.redirectToCheckout({
+      sessionId: result.data.id,
+    });
+  };
+
   const [selectedQuantity, updateSelectedQuantity] = useState();
   const quantityArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 100, 200, 1000];
 
@@ -31,20 +55,21 @@ export default function Checkout() {
         </select>
       </div>
       <div className="select-wrapper">
-        <button
+        <Button
           className="button"
           type="button"
           onClick={() => {
+            handleClick();
             console.log("test", selectedQuantity);
           }}
         >
           {ourText()}
-        </button>
+        </Button>
       </div>
       <div className="Space">
         <Route
           render={({ history }) => (
-            <button
+            <Button
               className="aboutbutton"
               type="button"
               onClick={() => {
@@ -52,7 +77,7 @@ export default function Checkout() {
               }}
             >
               戻る
-            </button>
+            </Button>
           )}
         />
       </div>
