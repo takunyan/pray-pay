@@ -48,18 +48,6 @@ export default function Checkout() {
   }
   return (
     <div className="SpaceMain">
-      <div>
-        <button
-          className="omikuji"
-          onClick={() => {
-            handleClickOmikuji();
-            console.log("Buying Omikuji");
-          }}
-        >
-          Buy a Omikuji
-        </button>
-      </div>
-
       <img src={logo1} className="CheckoutImage" alt="logo" />
 
       <div className="Space">

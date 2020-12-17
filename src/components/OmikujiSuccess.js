@@ -28,16 +28,27 @@ theme.typography.h3 = {
 export default function Success() {
   const classes = useStyles();
 
+  const messages = [
+    "おめでとう!最高の1年になります!!🥳",
+    "まあまあな1年になるでしょう🤔",
+    "今年、1回は良いことがありそう",
+    "残念。。毎日が地獄です😭",
+    "平凡な1年になるでしょう",
+    "日頃の行いが報われる1年になります!!",
+  ];
+
+  const outcome = Math.floor(messages.length * Math.random());
+
+  const omikuji = messages[outcome];
+
   return (
     <div>
       <Grid container spacing={10}>
         <Grid item xs={12}></Grid>
-        <Grid item xs={12}>
-          <img src={logo} className="OutcomeImage" alt="logo" />
-        </Grid>
+        <Grid item xs={12}></Grid>
         <Grid item xs={12}>
           <ThemeProvider theme={theme}>
-            <Typography variant="h3">ようこそお参りくださいました</Typography>
+            <Typography variant="h3">{omikuji}</Typography>
           </ThemeProvider>
         </Grid>
         <Grid item xs={12}>
