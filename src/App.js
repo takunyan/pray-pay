@@ -5,6 +5,9 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Main from "./components/Main.js";
 import Canceled from "./components/Canceled.js";
 import Success from "./components/Success.js";
+import OmikujiCheckout from "./components/OmikujiCheckout.js";
+import OmikujiSuccess from "./components/OmikujiSuccess.js";
+import OmikujiCanceled from "./components/OmikujiCanceled.js";
 import Checkout from "./components/Checkout.js";
 import About from "./components/About.js";
 
@@ -19,8 +22,11 @@ function App() {
         <Switch>
           <Route exact path="/" component={Main} />
           <Route exact path="/Canceled" component={Canceled} />
+          <Route exact path="/OmikujiCanceled" component={OmikujiCanceled} />
           <Route exact path="/Success" component={Success} />
+          <Route exact path="/OmikujiSuccess" component={OmikujiSuccess} />
           <Route exact path="/Checkout" component={Checkout} />
+          <Route exact path="/OmikujiCheckout" component={OmikujiCheckout} />
           <Route exact path="/About" component={About} />
         </Switch>
       </Router>
