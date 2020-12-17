@@ -5,13 +5,22 @@ import logo2 from "../image/5yencoin.png";
 import Button from "@material-ui/core/Button";
 import NativeSelect from "@material-ui/core/NativeSelect";
 import { makeStyles } from "@material-ui/core/styles";
+import Grid from '@material-ui/core/Grid';
 //firebase
 import firebase from "../firebase";
 import "firebase/functions";
 //stripe
 import { loadStripe } from "@stripe/stripe-js";
 
+const useStyles = makeStyles((theme) => ({
+  margin: {
+    margin: theme.spacing(1),
+  }
+}));
+
 export default function Checkout() {
+  const classes = useStyles();
+
   const handleClick = async () => {
     // Get Stripe.js instance
     const stripePromise = loadStripe(
@@ -42,9 +51,17 @@ export default function Checkout() {
       <img src={logo1} className="CheckoutImage" alt="logo" />
 
       <div className="Space">
+<<<<<<< HEAD
         <img src={logo2} className="yen" alt="logo" />
         <NativeSelect
           id="select"
+=======
+      
+      <img src={logo2} className="yen" alt="logo" />
+      
+     
+      <select
+>>>>>>> ae7d2956a2eddbe6b02d0de617d8674bb72f351f
           className="select"
           onChange={(e) => updateSelectedQuantity(e.target.value)}
           onBlur={(e) => updateSelectedQuantity(e.target.value)}
@@ -53,10 +70,16 @@ export default function Checkout() {
           {quantityArray.map((element, index) => (
             <option key={index}>{element}</option>
           ))}
+<<<<<<< HEAD
         </NativeSelect>
+=======
+        </select>
+
+>>>>>>> ae7d2956a2eddbe6b02d0de617d8674bb72f351f
       </div>
       <div className="select-wrapper">
         <Button
+          disabled={selectedQuantity=="枚数"||!selectedQuantity}
           className="button"
           type="button"
           onClick={() => {
@@ -71,8 +94,9 @@ export default function Checkout() {
         <Route
           render={({ history }) => (
             <Button
-              className="aboutbutton"
-              type="button"
+              variant="outlined"
+              size="large"
+              className={classes.margin}
               onClick={() => {
                 history.push("/");
               }}
