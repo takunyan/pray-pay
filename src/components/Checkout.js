@@ -37,6 +37,22 @@ export default function Checkout() {
     });
   };
 
+  const handleClickOmikuji = async () => {
+    // Get Stripe.js instance
+    const stripePromise = loadStripe(
+      "pk_test_51HyW53Hh1P19FUEP8rVhQxrtrr7hJ7qmkhdJTXfO1oC6sMRRlPK0HuvIV2RIxGZTGEGmKOeFgpQXSHnMTkKX0zT900rRAlWaTb"
+    );
+    const stripe = await stripePromise;
+    const getCheckoutSessionFunc = firebase
+      .functions()
+      .httpsCallable("getCheckoutOmikuji");
+    const result = await getCheckoutSessionFunc();
+    // When the customer clicks on the button, redirect them to Checkout.
+    await stripe.redirectToCheckout({
+      sessionId: result.data.id,
+    });
+  };
+
   const [selectedQuantity, updateSelectedQuantity] = useState();
   const quantityArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 100, 200, 1000];
 
@@ -48,6 +64,16 @@ export default function Checkout() {
   }
   return (
     <div className="SpaceMain">
+
+      <div>
+        <button 
+          className="omikuji"
+          onClick = {() => {
+            handleClickOmikuji();
+            console.log("Buying Omikuji");
+          }}>Buy a Omikuji</button>
+      </div>
+
       <img src={logo1} className="CheckoutImage" alt="logo" />
 
       <div className="Space">
