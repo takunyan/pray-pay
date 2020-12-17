@@ -1,15 +1,28 @@
 const functions = require("firebase-functions");
 const stripe = require("stripe")(functions.config().stripe.key);
 
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-exports.helloWorld = functions.https.onRequest((request, response) => {
-  console.log(request);
-  functions.logger.info("Hello logs!", { structuredData: true });
-  response.send("Hello from Firebase!");
+exports.getCheckoutSession = functions.https.onCall(async (data, context) => {
+  return await stripe.checkout.sessions.create({
+    payment_method_types: ["card"],
+    line_items: [
+      { price: "price_1HynyLHh1P19FUEPdhxDrEvC", quantity: data.quantity },
+    ],
+    mode: "payment",
+    success_url: "https://pray-pay.web.app/Success",
+    cancel_url: "https://pray-pay.web.app/Canceled",
+  });
 });
 
-exports.test = functions.https.onCall((data, context) => {
-  return "hello world" + data.text;
-});
+exports.getTestCheckoutSession = functions.https.onCall(
+  async (data, context) => {
+    return await stripe.checkout.sessions.create({
+      payment_method_types: ["card"],
+      line_items: [
+        { price: "price_1HynyLHh1P19FUEPdhxDrEvC", quantity: data.quantity },
+      ],
+      mode: "payment",
+      success_url: "http://localhost:3000/Success",
+      cancel_url: "http://localhost:3000/Canceled",
+    });
+  }
+);
