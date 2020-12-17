@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../image/success.png";
 import { Route } from "react-router-dom";
+import Button from "@material-ui/core/Button";
 
 export default function Success() {
   return (
@@ -10,7 +11,7 @@ export default function Success() {
       <div>
         <Route
           render={({ history }) => (
-            <button
+            <Button
               className="aboutbutton"
               type="button"
               onClick={() => {
@@ -18,7 +19,7 @@ export default function Success() {
               }}
             >
               戻る
-            </button>
+            </Button>
           )}
         />
       </div>
