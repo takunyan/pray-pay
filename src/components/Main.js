@@ -1,12 +1,15 @@
 import React from "react";
 import { Route } from "react-router-dom";
+import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core/styles";
+
 export default function Main() {
   return (
     <div className="SpaceMain">
       <div className="SpaceMain">
         <Route
           render={({ history }) => (
-            <button
+            <Button
               className="aboutbutton"
               type="button"
               onClick={() => {
@@ -14,7 +17,7 @@ export default function Main() {
               }}
             >
               参拝
-            </button>
+            </Button>
           )}
         />
       </div>
@@ -22,7 +25,7 @@ export default function Main() {
       <div>
         <Route
           render={({ history }) => (
-            <button
+            <Button
               className="button"
               type="button"
               onClick={() => {
@@ -30,7 +33,7 @@ export default function Main() {
               }}
             >
               About
-            </button>
+            </Button>
           )}
         />
       </div>
