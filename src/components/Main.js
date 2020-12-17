@@ -3,15 +3,26 @@ import { Route } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 
+const useStyles = makeStyles((theme) => ({
+  margin: {
+    margin: theme.spacing(1),
+  }
+}));
+
+
 export default function Main() {
+  const classes = useStyles();
+
   return (
     <div className="SpaceMain">
       <div className="SpaceMain">
         <Route
           render={({ history }) => (
             <Button
-              className="aboutbutton"
-              type="button"
+              variant="outlined"
+              color="secondary"
+              size="large"
+              className={classes.margin}
               onClick={() => {
                 history.push("/Checkout");
               }}
@@ -26,8 +37,9 @@ export default function Main() {
         <Route
           render={({ history }) => (
             <Button
-              className="button"
-              type="button"
+              variant="outlined"
+              size="large"
+              className={classes.margin}
               onClick={() => {
                 history.push("/About");
               }}
