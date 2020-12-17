@@ -1,6 +1,8 @@
 import React from "react";
 import logo from "../image/fail.png";
 import { Route } from "react-router-dom";
+import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core/styles";
 
 export default function Canceled() {
   return (
@@ -10,7 +12,7 @@ export default function Canceled() {
       <div>
         <Route
           render={({ history }) => (
-            <button
+            <Button
               className="aboutbutton"
               type="button"
               onClick={() => {
@@ -18,7 +20,7 @@ export default function Canceled() {
               }}
             >
               戻る
-            </button>
+            </Button>
           )}
         />
       </div>

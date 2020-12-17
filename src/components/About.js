@@ -2,6 +2,8 @@ import React from "react";
 import logo1 from "../image/manworship.png";
 import logo2 from "../image/mansuccess.png";
 import { Route } from "react-router-dom";
+import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core/styles";
 
 export default function About() {
   return (
@@ -21,7 +23,7 @@ export default function About() {
       <div>
         <Route
           render={({ history }) => (
-            <button
+            <Button
               className="aboutbutton"
               type="button"
               onClick={() => {
@@ -29,7 +31,7 @@ export default function About() {
               }}
             >
               戻る
-            </button>
+            </Button>
           )}
         />
       </div>
