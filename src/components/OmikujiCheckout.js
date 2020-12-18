@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Route } from "react-router-dom";
-import logo1 from "../image/worship.png";
-import logo2 from "../image/5yencoin.png";
+import logo from "../image/omikuji.png";
+
 import Button from "@material-ui/core/Button";
 import NativeSelect from "@material-ui/core/NativeSelect";
 import { makeStyles } from "@material-ui/core/styles";
@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 export default function Checkout() {
   const classes = useStyles();
 
-  const handleClick = async () => {
+  const handleClickOmikuji = async () => {
     // Get Stripe.js instance
     const stripePromise = loadStripe(
       "pk_test_51HyW53Hh1P19FUEP8rVhQxrtrr7hJ7qmkhdJTXfO1oC6sMRRlPK0HuvIV2RIxGZTGEGmKOeFgpQXSHnMTkKX0zT900rRAlWaTb"
@@ -29,54 +29,29 @@ export default function Checkout() {
     const stripe = await stripePromise;
     const getCheckoutSessionFunc = firebase
       .functions()
-      .httpsCallable("getCheckoutSession");
-    const result = await getCheckoutSessionFunc({ quantity: selectedQuantity });
+      .httpsCallable("getTestCheckoutOmikuji");
+    const result = await getCheckoutSessionFunc();
     // When the customer clicks on the button, redirect them to Checkout.
     await stripe.redirectToCheckout({
       sessionId: result.data.id,
     });
   };
 
-  const [selectedQuantity, updateSelectedQuantity] = useState();
-  const quantityArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 100, 200, 1000];
-
-  function ourText() {
-    let output = !isNaN(selectedQuantity)
-      ? `${selectedQuantity * 5}円 お賽銭を投げる`
-      : "枚数を選んで下さい";
-    return output;
-  }
   return (
     <div className="SpaceMain">
-      <img src={logo1} className="CheckoutImage" alt="logo" />
+      <img src={logo} className="CheckoutImage" alt="logo" />
 
-      <div className="Space">
-        <img src={logo2} className="yen" alt="logo" />
-
-        <select
-          className="select"
-          onChange={(e) => updateSelectedQuantity(e.target.value)}
-          onBlur={(e) => updateSelectedQuantity(e.target.value)}
-        >
-          <option>枚数</option>
-          {quantityArray.map((element, index) => (
-            <option key={index}>{element}</option>
-          ))}
-        </select>
-      </div>
       <div className="select-wrapper">
         <Button
-          disabled={selectedQuantity == "枚数" || !selectedQuantity}
           variant="outlined"
           color="secondary"
           size="large"
           className={classes.margin}
           onClick={() => {
-            handleClick();
-            console.log("test", selectedQuantity);
+            handleClickOmikuji();
           }}
         >
-          {ourText()}
+          200円でおみくじを引く
         </Button>
       </div>
       <div className="Space">
