@@ -1,11 +1,12 @@
 import React from "react";
-import logo from "../image/success.png";
+import logo from "../image/omikuji.gif";
 import { Route } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import sound from "../image/syakasyaka.mp3";
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -44,8 +45,15 @@ export default function Success() {
   return (
     <div>
       <Grid container spacing={10}>
-        <Grid item xs={12}></Grid>
-        <Grid item xs={12}></Grid>
+        <Grid item xs={12}>
+          {/* <iframe src="https://raw.githubusercontent.com/anars/blank-audio/master/2-seconds-of-silence.mp3" allow="autoplay" id="audio" style="display: none"></iframe>
+          <audio autoplay>
+            <source src={sound} type="audio/mpeg"></source>
+          </audio> */}
+        </Grid>
+        <Grid item xs={12}>
+          <img className="omikujiResult" src={logo} alt = " " ></img>
+        </Grid>
         <Grid item xs={12}>
           <ThemeProvider theme={theme}>
             <Typography variant="h3">{omikuji}</Typography>

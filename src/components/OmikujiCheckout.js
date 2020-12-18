@@ -29,7 +29,7 @@ export default function Checkout() {
     const stripe = await stripePromise;
     const getCheckoutSessionFunc = firebase
       .functions()
-      .httpsCallable("getTestCheckoutOmikuji");
+      .httpsCallable("getCheckoutOmikuji");
     const result = await getCheckoutSessionFunc();
     // When the customer clicks on the button, redirect them to Checkout.
     await stripe.redirectToCheckout({
