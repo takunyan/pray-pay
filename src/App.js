@@ -1,3 +1,4 @@
+
 import logo from "./image/logo.png";
 import "./App.css";
 import React, { useEffect, useState } from "react";
@@ -11,11 +12,13 @@ import OmikujiCanceled from "./components/OmikujiCanceled.js";
 import Checkout from "./components/Checkout.js";
 import About from "./components/About.js";
 
+
 function App() {
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+
       </header>
 
       <Router className="Router">
@@ -30,6 +33,7 @@ function App() {
           <Route exact path="/About" component={About} />
         </Switch>
       </Router>
+
     </div>
   );
 }

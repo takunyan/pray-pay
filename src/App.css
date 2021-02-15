@@ -3,14 +3,17 @@
 }
 
 .App-logo {
+
   height: 15vmin;
   pointer-events: none;
 }
 
 .OutcomeImage {
+
   height: 40vmin;
   pointer-events: none;
 }
+
 
 .CheckoutImage {
   height: 60vmin;
@@ -24,6 +27,7 @@
 .App-header {
   background-color: whitesmoke;
   /* min-height: 100vh; */
+
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,6 +39,7 @@
 .App-link {
   color: #61dafb;
 }
+
 
 .SpaceMain {
   margin-top: 100px;
@@ -49,3 +54,4 @@
 .omikujiResult {
   height: 50vmin
 }
+
